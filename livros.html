@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaarabatana</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+
+</head>
+
+<body>
+
+    <section id="header">
+        <a href="#"><img class="logo" src="img/logo.png" height="48" width="282" alt=""></a>
+        <div>
+            <ul id="nav-bar">
+                <li><a href="index.html">Home</a></li>
+                <li><a class="active" href="#">Livros</a></li>
+                <li><a href="cadastro.html">Cadastro</a></li>
+                <li><a href="#"><i class="material-icons">shopping_cart</i></a></li>
+            </ul>
+        </div>
+
+    </section>
+
+    <div id="root">
+
+    </div>
+
+    <script>
+        // Create a request variable and assign a new XMLHttpRequest object to it.
+        var request = new XMLHttpRequest()
+
+        // Open a new connection, using the GET request on the URL endpoint
+        request.open('GET', 'http://localhost:9090/Livros', true)
+
+        const app = document.getElementById('root')
+        const container = document.createElement('div')
+        container.setAttribute('class', 'container')
+        app.appendChild(container)
+
+        request.onload = function () {
+            // Begin accessing JSON data here
+            var data = JSON.parse(this.response)
+
+            if (request.status >= 200 && request.status < 400) {
+                data.forEach(livros => {
+                    console.log(livros)
+                    
+                    // cria uma section com a classe card
+                    const card = document.createElement('section')
+                    card.setAttribute('class', 'card')
+
+                    // cria h1 com o nome do cliente
+                    const h1 = document.createElement('h1')
+                    h1.textContent = livros.nome
+
+                    // Cria elementos p e preenche com informacoes dos atendimentos
+                    const pnome = document.createElement('p')
+
+                    const pautor = document.createElement('p')
+                    pautor.textContent = `Autor: ${livros.autor}` 
+
+                    const peditora = document.createElement('p')
+                    peditora.textContent = `Editora: ${livros.editora}` 
+
+                    const pidioma = document.createElement('p')
+                    pidioma.textContent = `Idioma: ${livros.idioma}` 
+
+                    const ppreco = document.createElement('p')
+                    ppreco.textContent = `Preço: ${livros.preco}` 
+
+                    const ppublicacao = document.createElement('p')
+
+
+
+                    container.appendChild(card)
+
+                    // Each card will contain an h1 and a p
+                    card.appendChild(h1)
+                    card.appendChild(pnome)
+                    card.appendChild(pautor)
+                    card.appendChild(peditora)
+                    card.appendChild(pidioma)
+                    card.appendChild(ppreco)
+                    card.appendChild(ppublicacao)
+
+
+                })
+            } else {
+                console.log('error')
+            }
+        }
+
+        // Send request
+        request.send()
+    </script>
+
+<footer class="section-p1">
+    <div class="col">
+      <img src="img/logo.png" height="48" width="282" alt="">
+      <h4>Contato</h4>
+      <p><strong>Endereço: </strong> Rua lenga lenga</p>
+      <p><strong>Telefone: </strong> (71) 3333-9090</p>
+      <p><strong>Email: </strong> zaarabatana@startup.com</p>
+    </div>
+    <div class="col">
+      <h4>Sobre</h4>
+      <a href="#">Sobre nós</a>
+      <a href="#">Informações</a>
+      <a href="#">Política Privada</a>
+      <a href="#">Termos e Condições</a>
+      <a href="#">Contate-nos</a>
+    </div>
+    <div class="col">
+      <h4>Minha Conta</h4>
+      <a href="#">Cadastre-se</a>
+      <a href="#">Ver Carrinho</a>
+      <a href="#">Lista de Desejos</a>
+      <a href="#">Acompanhar meu Pedido</a>
+      <a href="#">Ajuda</a>
+    </div>
+
+    <div class="col install">
+      <h4>Instale Nosso Aplicativo</h4>
+      <p>Pela App Store ou Google Play</p>
+      <div class="row">
+        <img src="img/app.jpg" alt="">
+        <img src="img/play.jpg" alt="">
+      </div>
+      <p>Métodos de Pagamento</p>
+      <img src="img/pay.png" alt="">
+    </div>
+    <div class="copyright">
+      <p>© 2022, Zaarabatana - Ecommerce Startup</p>
+    </div>
+  </footer>
+</body>
+
+</html>

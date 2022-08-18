@@ -1,0 +1,11 @@
+POST http://localhost:9090/livros HTTP/1.1
+content-type: application/json
+ 
+{
+    "nome": "As Crônicas de Nárnia",
+    "autor": "Clive Staples Lewis",
+    "editora": "WMF Martins Fontes",
+    "idioma": "Português",
+    "preco": "44.90",
+    "publicacao": "08/01/2009"
+}
